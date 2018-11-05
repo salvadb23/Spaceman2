@@ -1,37 +1,42 @@
-import random	
+from random import choice
 
-words = ["awesome", "cool", "interesting", "microwave", "toaster", "blender"]
+word = choice(["code", "club"])
 
-random.shuffle(words)
+guessed = []
+wrong = []
 
-answer = words[1]
+tries = 7
 
-display = []
-display.extend(answer)
+while tries > 0:
 
-for i in range(len(display)):
-	display[i] = "_"
+    out = ""
+    for letter in word:
+        if letter in guessed:
+            out = out + letter
+        else:
+            out = out + "_"
 
-print("Welcome to Spaceman\n")
+    if out == word:
+        break
 
+    print("Guess the word:", out)
+    print(tries, "chances left")
 
-print ' '.join(display)
-print "\n\n\n\n"
+    guess = input()
 
-count = 0
+    if guess in guessed or guess in wrong:
+        print("Already guessed", guess)
+    elif guess in word:
+        print("Yay")
+        guessed.append(guess)
+    else:
+        print("Nope")
+        tries = tries - 1
+        wrong.append(guess)
 
-while count < len(answer):
+    print()
 
-	guess = raw_input("Guess a letter: ")
-
-	guess = guess.upper
-
-	for i in range(len(answer)):
-		if answer[i] == guess:
-			display[i] = guess
-			count += 1
-
-	print ' '.join(display)
-	print "\n\n\n"
-
-print "You win!"
+if tries:
+    print("You guessed", word)
+else:
+    print("You didn't get", word)
