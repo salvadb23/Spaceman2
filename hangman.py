@@ -1,6 +1,6 @@
 from random import choice
 
-word = choice(["code", "club"])
+word = choice(["hello", "interesting", "internet"])
 
 guessed = []
 wrong = []
