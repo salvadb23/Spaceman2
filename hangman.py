@@ -21,8 +21,11 @@ while tries > 0:
 
     print("Guess the word:", out)
     print(tries, "chances left")
+    print("letters guessed:", *wrong)
 
     guess = input()
+
+    guess = guess.lower()
 
     if guess in guessed or guess in wrong:
         print("Already guessed", guess)
